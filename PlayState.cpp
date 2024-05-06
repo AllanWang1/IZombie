@@ -20,11 +20,18 @@ namespace izombie
                                     SPIKEWEED_FILEPATH);
         _data -> assets.LoadTexture("Zombie1",
                                     ZOMBIE_1_FILEPATH);
+        _data -> assets.LoadTexture("Zombie2",
+                                    ZOMBIE_2_FILEPATH);
+        _data -> assets.LoadTexture("Zombie3",
+                                    ZOMBIE_3_FILEPATH);
+        _data -> assets.LoadTexture("Zombie4",
+                                    ZOMBIE_4_FILEPATH);
+        _data -> assets.LoadTexture("Zombie5",
+                                    ZOMBIE_5_FILEPATH);
 
         _background.setTexture(this -> _data -> assets.GetTexture("Game Background"));
-
-        spike = new Spikeweed(_data);
         zombie = new Player(_data);
+        spike = new Spikeweed(_data);
     }
 
     void PlayState::HandleInput()
@@ -34,6 +41,11 @@ namespace izombie
         {
             if (sf::Event::Closed == event.type)
                 _data -> window.close();
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            {
+                zombie->Tap();
+            }
         }
     }
 
@@ -49,6 +61,8 @@ namespace izombie
             spike->Spawn();
             _clock.restart();
         }
+        zombie->Animate();
+        zombie->Update(dt);
     }
 
     void PlayState::Draw(float dt)

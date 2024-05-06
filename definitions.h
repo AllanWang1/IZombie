@@ -14,11 +14,20 @@
 
 #define SPIKEWEED_MOVEMENT_SPEED 130.0f
 
-#define ZOMBIE_1_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/zombie1.png"
-#define ZOMBIE_2_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/zombie2.png"
+#define ZOMBIE_1_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/zombieFrames/zombie1.png"
+#define ZOMBIE_2_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/zombieFrames/zombie2.png"
+#define ZOMBIE_3_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/zombieFrames/zombie3.png"
+#define ZOMBIE_4_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/zombieFrames/zombie4.png"
+#define ZOMBIE_5_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/zombieFrames/zombie5.png"
+#define ZOMBIE_ANIMATION_DURATION 0.5f
 
-#define ZOMBIE_STATE_STILL 1
-#define ZOMBIE_STATE_JUMPING 2
+#define ZOMBIE_STILL_STATE 1
+#define ZOMBIE_JUMP_STATE 2
+#define ZOMBIE_FALL_STATE 3
+#define GRAVITY 350.0f
+#define JUMP_SPEED 350.0f
+#define JUMP_DURATION 0.4f
+#define FALL_DURATION 0.4f * 2
 
 ////////////////SOUNDS/////////////////
 

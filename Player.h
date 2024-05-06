@@ -4,7 +4,7 @@
 
 #include "definitions.h"
 #include "Game.h"
-
+#include <vector>
 namespace izombie
 {
     class Player
@@ -14,6 +14,8 @@ namespace izombie
 
         void Draw();
 
+        void Animate();
+
         void Update(float dt);
 
         void Tap();
@@ -21,5 +23,15 @@ namespace izombie
     private:
         GameDataRef _data;
         sf::Sprite _zombie;
+
+        std::vector<sf::Texture> _zombieFrames;
+        unsigned int _animationIterator;
+
+        sf::Clock _clock;
+
+        sf::Clock _jumpClock;
+        sf::Clock _fallClock;
+
+        int _zombieState;
     };
 }

@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <iostream>
 #include "definitions.h"
 #include "Game.h"
 #include <vector>
@@ -33,5 +34,8 @@ namespace izombie
         sf::Clock _fallClock;
 
         int _zombieState;
+
+        bool _hasBeenTapped;
+        sf::Vector2f _basePosition;
     };
 }

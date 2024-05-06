@@ -12,8 +12,10 @@ namespace izombie
         _zombieFrames.push_back(_data->assets.GetTexture("Zombie4"));
         _zombieFrames.push_back(_data->assets.GetTexture("Zombie5"));
         _zombie.setTexture((_zombieFrames.at(_animationIterator)));
-        _zombie.setPosition(_zombie.getGlobalBounds().width/2,
-                            (float) _data->window.getSize().y - _zombie.getGlobalBounds().height - 50);
+
+        _basePosition = sf::Vector2f(_zombie.getGlobalBounds().width/2,
+                                     (float) _data->window.getSize().y - _zombie.getGlobalBounds().height - 50);
+        _zombie.setPosition(_basePosition);
     }
 
     void Player::Draw()
@@ -40,34 +42,37 @@ namespace izombie
 
     void Player::Update(float dt)
     {
-        if (ZOMBIE_JUMP_STATE == _zombieState)
+        if (_zombieState == ZOMBIE_JUMP_STATE)
         {
             _zombie.move(0, -GRAVITY * dt);
         }
-        else if (ZOMBIE_FALL_STATE == _zombieState)
+        else if (_zombieState == ZOMBIE_FALL_STATE)
         {
             _zombie.move(0, GRAVITY * dt);
         }
-        else
+        else if (_zombieState == ZOMBIE_STILL_STATE)
         {
-            _zombie.setPosition(_zombie.getGlobalBounds().width/2,
-                                (float) _data->window.getSize().y - _zombie.getGlobalBounds().height - 50);
+            _zombie.setPosition(_basePosition);
         }
 
 
-        if (_jumpClock.getElapsedTime().asSeconds() > JUMP_DURATION)
+        if (_hasBeenTapped)
         {
-            _zombieState = ZOMBIE_FALL_STATE;
-        }
-        if (_fallClock.getElapsedTime().asSeconds() > FALL_DURATION)
-        {
-            _zombieState = ZOMBIE_STILL_STATE;
+            if (_jumpClock.getElapsedTime().asSeconds() > JUMP_DURATION)
+            {
+                _zombieState = ZOMBIE_FALL_STATE;
+            }
+            if (_fallClock.getElapsedTime().asSeconds() > FALL_DURATION)
+            {
+                _zombieState = ZOMBIE_STILL_STATE;
+            }
         }
     }
 
     void Player::Tap()
     {
-        if (_zombieState == ZOMBIE_STILL_STATE)
+        _hasBeenTapped = true;
+        if (_zombieState == ZOMBIE_STILL_STATE && _zombie.getPosition() == _basePosition)
         {
             _zombieState = ZOMBIE_JUMP_STATE;
             _jumpClock.restart();

@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Spikeweed.h"
 #include "Player.h"
+#include "Collision.h"
 namespace izombie
 {
     class PlayState : public State
@@ -25,8 +26,10 @@ namespace izombie
 
         Spikeweed *spike;
         Player *zombie;
-
+        Collision *collision;
         sf::Clock _clock;
+
+        bool dead;
     };
 }
 

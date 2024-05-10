@@ -16,11 +16,19 @@ namespace izombie
         _basePosition = sf::Vector2f(_zombie.getGlobalBounds().width/2,
                                      (float) _data->window.getSize().y - _zombie.getGlobalBounds().height - 50);
         _zombie.setPosition(_basePosition);
+
+        _hitbox.setSize(sf::Vector2f (_zombie.getGlobalBounds().width,
+                                      _zombie.getGlobalBounds().height));
+        _hitbox.setPosition(_basePosition);
+        _hitbox.setOutlineColor(sf::Color::Blue);
+        _hitbox.setOutlineThickness(5.f);
+        _hitbox.setFillColor(sf::Color::Transparent);
     }
 
     void Player::Draw()
     {
         _data->window.draw(_zombie);
+        _data->window.draw(_hitbox);
     }
 
     void Player::Animate()
@@ -67,6 +75,7 @@ namespace izombie
                 _zombieState = ZOMBIE_STILL_STATE;
             }
         }
+        _hitbox.setPosition(_zombie.getPosition());
     }
 
     void Player::Tap()
@@ -78,5 +87,10 @@ namespace izombie
             _jumpClock.restart();
             _fallClock.restart();
         }
+    }
+
+    const sf::Sprite &Player::GetSprite() const
+    {
+        return _zombie;
     }
 }

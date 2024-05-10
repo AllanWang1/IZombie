@@ -2,6 +2,8 @@
 
 namespace izombie
 {
+    // Modifies: this
+    // Effects: loads a file from parameter fileName, sets texture name to name parameter
     void AssetManager::LoadTexture(std::string name, std::string fileName)
     {
         sf::Texture texture;

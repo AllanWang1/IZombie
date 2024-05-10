@@ -23,7 +23,9 @@ set(SOURCE_FILES main.cpp
         Spikeweed.cpp
         Spikeweed.h
         Player.cpp
-        Player.h)
+        Player.h
+        Collision.cpp
+        Collision.h)
 add_executable(IZombie ${SOURCE_FILES})
 include_directories(/usr/local/include)
 

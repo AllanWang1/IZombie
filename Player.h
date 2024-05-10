@@ -21,9 +21,11 @@ namespace izombie
 
         void Tap();
 
+        const sf::Sprite &GetSprite() const;
     private:
         GameDataRef _data;
         sf::Sprite _zombie;
+        sf::RectangleShape _hitbox;
 
         std::vector<sf::Texture> _zombieFrames;
         unsigned int _animationIterator;

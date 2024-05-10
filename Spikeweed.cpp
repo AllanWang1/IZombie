@@ -40,4 +40,8 @@ namespace izombie
         }
     }
 
+    const std::vector<sf::Sprite> &Spikeweed::GetSpikeweedSprites() const
+    {
+        return spikeweeds;
+    }
 }

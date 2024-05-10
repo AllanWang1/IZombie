@@ -32,6 +32,7 @@ namespace izombie
         _background.setTexture(this -> _data -> assets.GetTexture("Game Background"));
         zombie = new Player(_data);
         spike = new Spikeweed(_data);
+        collision = new Collision();
     }
 
     void PlayState::HandleInput()
@@ -51,18 +52,31 @@ namespace izombie
 
     void PlayState::Update(float dt)
     {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(15,55);
-        float random_time = ((float) dis(gen)) / 10;
-        spike->Move(dt);
-        if (_clock.getElapsedTime().asSeconds() > random_time)
+        if (!dead)
         {
-            spike->Spawn();
-            _clock.restart();
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> dis(15,55);
+            float random_time = ((float) dis(gen)) / 10;
+            spike->Move(dt);
+            if (_clock.getElapsedTime().asSeconds() > random_time)
+            {
+                spike->Spawn();
+                _clock.restart();
+            }
+            zombie->Animate();
+            zombie->Update(dt);
+
+            // check the collisions, if collided, stop all movements
+            std::vector<sf::Sprite> spikeweedSprites = spike->GetSpikeweedSprites();
+            for (const auto & spikeweedSprite : spikeweedSprites)
+            {
+                if (collision->Collided(zombie->GetSprite(), spikeweedSprite))
+                {
+                    dead = true;
+                }
+            }
         }
-        zombie->Animate();
-        zombie->Update(dt);
     }
 
     void PlayState::Draw(float dt)

@@ -2,11 +2,14 @@
 
 namespace izombie
 {
+    // Modifies: this
     Spikeweed::Spikeweed(GameDataRef data): _data(data)
     {
 
     }
 
+    // Modifies: _data, spikeweeds
+    // Effects: sets initial position of every spikeweed, and pushes newly spawns spikeweeds to spikeweeds
     void Spikeweed::Spawn()
     {
         sf::Sprite spikeweed(_data->assets.GetTexture("Spikeweed"));
@@ -15,6 +18,8 @@ namespace izombie
         spikeweeds.push_back(spikeweed);
     }
 
+    // Modifies: this
+    // Effects: Moves all spikeweeds in the vector at the same speed
     void Spikeweed::Move(float dt)
     {
         for(int i = 0; i < spikeweeds.size(); i++)
@@ -32,6 +37,8 @@ namespace izombie
         }
     }
 
+    // Modifies: this
+    // Effects: draws every spikeweed in the window.
     void Spikeweed::DrawSpikeweeds()
     {
         for (int i = 0; i < spikeweeds.size(); i++)
@@ -40,7 +47,7 @@ namespace izombie
         }
     }
 
-    const std::vector<sf::Sprite> &Spikeweed::GetSpikeweedSprites() const
+    std::vector<sf::Sprite> Spikeweed::GetSpikeweedSprites()
     {
         return spikeweeds;
     }

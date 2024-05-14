@@ -25,10 +25,11 @@
 #define ZOMBIE_JUMP_STATE 2
 #define ZOMBIE_FALL_STATE 3
 #define GRAVITY 350.0f
-#define JUMP_SPEED 350.0f
 #define JUMP_DURATION 0.4f
 #define FALL_DURATION 0.4f * 2
 
+#define INVINCIBILITY_DURATION 2.0f
+#define INITIAL_HEALTH 3
 ////////////////SOUNDS/////////////////
 
 #define PLAY_BUTTON_SOUND_FILEPATH "/Users/allanwang/Desktop/IZombie/Resources/play_button.wav"

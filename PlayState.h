@@ -29,7 +29,7 @@ namespace izombie
         Collision *collision;
         sf::Clock _clock;
 
-        bool dead;
+        bool _dead;
     };
 }
 

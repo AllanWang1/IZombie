@@ -17,7 +17,7 @@ namespace izombie
         void Spawn();
         void Move(float dt);
 
-        const std::vector<sf::Sprite> &GetSpikeweedSprites() const;
+        std::vector<sf::Sprite> GetSpikeweedSprites();
     private:
         GameDataRef _data;
         std::vector<sf::Sprite> spikeweeds;

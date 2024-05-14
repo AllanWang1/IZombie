@@ -22,6 +22,12 @@ namespace izombie
         void Tap();
 
         const sf::Sprite &GetSprite() const;
+
+        void GetHurt();
+
+        bool GetInvincibilityStatus() const;
+
+        int GetHealth() const;
     private:
         GameDataRef _data;
         sf::Sprite _zombie;
@@ -39,5 +45,10 @@ namespace izombie
 
         bool _hasBeenTapped;
         sf::Vector2f _basePosition;
+
+        bool _invincible;
+        sf::Clock _invincibilityClock;
+
+        int _health;
     };
 }

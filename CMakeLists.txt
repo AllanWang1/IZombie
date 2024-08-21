@@ -26,6 +26,8 @@ set(SOURCE_FILES main.cpp
         Player.h
         Collision.cpp
         Collision.h
+        HealthBar.cpp
+        HealthBar.h
 )
 add_executable(IZombie ${SOURCE_FILES})
 include_directories(/usr/local/include)

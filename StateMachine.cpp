@@ -1,12 +1,13 @@
 #include "StateMachine.h"
 
+
 // Modifies: this
 // Effects: sets isAdding to true; takes in newState parameter and sets it as the new State with std::move.
-void StateMachine::AddState(StateRef newState, bool isReplacing)
+void StateMachine::AddState(StateRef _newState, bool _isReplacing)
 {
     this->isAdding = true;
-    this->isReplacing = isReplacing;
-    this->newState = std::move(newState);
+    this->isReplacing = _isReplacing;
+    this->newState = std::move(_newState);
 }
 
 // Modifies: this

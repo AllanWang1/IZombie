@@ -32,9 +32,11 @@ namespace izombie
                                     ZOMBIE_4_FILEPATH);
         _data -> assets.LoadTexture("Zombie5",
                                     ZOMBIE_5_FILEPATH);
+
         _background.setTexture(this -> _data -> assets.GetTexture("Game Background"));
         zombie = new Player(_data);
         spike = new Spikeweed(_data);
+        hp = new HealthBar(_data);
         collision = new Collision();
     }
 
@@ -84,6 +86,7 @@ namespace izombie
                     if (collision->Collided(zombie->GetSprite(), spikeweedSprite))
                     {
                         zombie->GetHurt();
+                        hp->Update(zombie->GetHealth());
                         if (zombie->GetHealth() <= 0)
                         {
                             _dead = true;
@@ -100,10 +103,11 @@ namespace izombie
     // Effects: calls draw on zombie, spike, and display background on window.
     void PlayState::Draw(float dt)
     {
-        _data->window.clear();
-        _data->window.draw(_background);
-        zombie->Draw();
-        spike->DrawSpikeweeds();
+        _data -> window.clear();
+        _data -> window.draw(_background);
+        zombie -> Draw();
+        spike -> DrawSpikeweeds();
+        hp -> Draw();
         _data->window.display();
     }
 

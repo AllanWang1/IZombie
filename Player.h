@@ -43,7 +43,6 @@ namespace izombie
 
         int _zombieState;
 
-        bool _hasBeenTapped;
         sf::Vector2f _basePosition;
 
         bool _invincible;

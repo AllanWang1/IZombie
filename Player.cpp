@@ -66,6 +66,7 @@ namespace izombie
     //          Check if invincibility has passed, turn off invincibility.
     void Player::Update(float dt)
     {
+        // std::cout << _zombieState << std::endl;
         if (_zombieState == ZOMBIE_JUMP_STATE)
         {
             _zombie.move(0, -GRAVITY * dt);
@@ -80,18 +81,15 @@ namespace izombie
             _zombie.setPosition(_basePosition);
         }
 
-        // Do not call _clock.getElapsedTime() if it's before the first tap. This will start the clocks
-        // which is what caused the sprite to fall down the screen upon starting the game.
-        if (_hasBeenTapped)
+        // _jumpClock starts at initialization, and once we enter the game, _jumpClock is already past JUMP_DURATION.
+        // Must also apply condition where _zombieState is what we are expecting it to be when we check.
+        if (_jumpClock.getElapsedTime().asSeconds() > JUMP_DURATION && _zombieState == ZOMBIE_JUMP_STATE)
         {
-            if (_jumpClock.getElapsedTime().asSeconds() > JUMP_DURATION)
-            {
-                _zombieState = ZOMBIE_FALL_STATE;
-            }
-            if (_fallClock.getElapsedTime().asSeconds() > FALL_DURATION)
-            {
-                _zombieState = ZOMBIE_STILL_STATE;
-            }
+            _zombieState = ZOMBIE_FALL_STATE;
+        }
+        if (_fallClock.getElapsedTime().asSeconds() > FALL_DURATION && _zombieState == ZOMBIE_FALL_STATE)
+        {
+            _zombieState = ZOMBIE_STILL_STATE;
         }
 
         if (_invincibilityClock.getElapsedTime().asSeconds() > INVINCIBILITY_DURATION)
@@ -104,8 +102,6 @@ namespace izombie
     //          _fallClock in order to let the player sprite fall down at the right time.
     void Player::Tap()
     {
-        // Let Update know space bar has been tapped at least once.
-        _hasBeenTapped = true;
         if (_zombieState == ZOMBIE_STILL_STATE && _zombie.getPosition() == _basePosition)
         {
             _zombieState = ZOMBIE_JUMP_STATE;
@@ -127,6 +123,7 @@ namespace izombie
         sf::Image image = _zombieFrames.at(_animationIterator).copyToImage();
         std::memcpy(pixels, image.getPixelsPtr(), textureWidth * textureHeight * 4);
 
+        // turning the frame more red
         for (unsigned int x = 0; x < textureWidth; x++) {
             for (unsigned int y = 0; y < textureHeight; y++) {
                 unsigned int index = (x * textureHeight + y) * 4;

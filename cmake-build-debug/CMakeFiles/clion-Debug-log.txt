@@ -1,4 +1,15 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/allanwang/Documents/Projects/IZombie -B /Users/allanwang/Documents/Projects/IZombie/cmake-build-debug
+CMake Warning at /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.28/Modules/Platform/Darwin-Initialize.cmake:308 (message):
+  Ignoring CMAKE_OSX_SYSROOT value:
+
+   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk
+
+  because the directory does not exist.
+Call Stack (most recent call first):
+  /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake:34 (include)
+  CMakeLists.txt:2 (project)
+
+
 -- Found SFML 2.6.1 in /opt/homebrew/lib/cmake/SFML
 -- Configuring done (0.0s)
 -- Generating done (0.0s)

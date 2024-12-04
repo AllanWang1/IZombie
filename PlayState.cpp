@@ -3,13 +3,14 @@
 #include "definitions.h"
 #include <random>
 #include <iostream>
+#include <utility>
 #include "GameOverState.h"
 
 // Class that represents the playing state of the game.
 namespace izombie
 {
     // Modifies: this
-    PlayState::PlayState(GameDataRef data) : _data(data)
+    PlayState::PlayState(GameDataRef data) : _data(std::move(data))
     {
 
     }

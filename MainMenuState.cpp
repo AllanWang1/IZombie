@@ -3,7 +3,6 @@
 #include <sstream>
 #include "definitions.h"
 #include "PlayState.h"
-#include <iostream>
 
 namespace izombie
 {

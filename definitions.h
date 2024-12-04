@@ -24,6 +24,8 @@
 #define EMPTY_HEART_FILEPATH "/Users/allanwang/Documents/Projects/IZombie/Resources/emptyheart.png"
 #define ZOMBIE_ANIMATION_DURATION 0.5f
 
+#define RESTART_BUTTON_FILEPATH "/Users/allanwang/Documents/Projects/IZombie/Resources/restart.png"
+
 #define ZOMBIE_STILL_STATE 1
 #define ZOMBIE_JUMP_STATE 2
 #define ZOMBIE_FALL_STATE 3

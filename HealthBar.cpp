@@ -14,6 +14,8 @@ namespace izombie {
                                     EMPTY_HEART_FILEPATH);
         _fullHeart.setTexture(_data -> assets.GetTexture("FullHeart"));
         _emptyHeart.setTexture(_data -> assets.GetTexture("EmptyHeart"));
+        _fullHeart.setScale(0.5f, 0.5f);
+        _emptyHeart.setScale(0.5f, 0.5f);
 
         for (int i = 0; i < INITIAL_HEALTH; i++)
         {
